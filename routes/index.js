@@ -9,6 +9,7 @@ const protectUser = require("../config/authMiddleware");
 router.post("/register", userController.createUser);
 router.post("/login", userController.loginUser);
 router.get("/logout", userController.logoutUser);
+router.get("/get-categories", protectUser,productController.getCategories);
 
 // product category and product management
 router.post("/create-category", protectUser,productController.createCategory);

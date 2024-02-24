@@ -23,3 +23,17 @@ module.exports.createCategory = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
 	}
 };
+
+// Controller function to get a list of categories
+module.exports.getCategories = async (req, res) => {
+	try {
+		// Fetch all categories from the database
+		const categories = await Category.find({}, "name");
+
+		// Return the list of categories
+		res.status(200).json(categories);
+	} catch (error) {
+		// Handle errors
+		res.status(500).json({ message: "Internal Server Error", error: error.message });
+	}
+};
