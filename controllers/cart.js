@@ -45,3 +45,22 @@ module.exports.addToCart = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
 	}
 };
+
+// Controller function to view the user's cart
+module.exports.viewCart = async (req, res) => {
+	try {
+		const { user } = req;
+
+		// Find the user's cart
+		const cart = await Cart.findOne({ user: user._id }).populate("items.product");
+
+		// If the cart doesn't exist or is empty, return an empty array
+		if (!cart || cart.items.length === 0) {
+			return res.status(200).json({ message: "Cart is empty", cart: [] });
+		}
+
+		res.status(200).json({ message: "Cart retrieved successfully", cart: cart.items });
+	} catch (error) {
+		res.status(500).json({ message: "Internal Server Error", error: error.message });
+	}
+};
