@@ -70,3 +70,20 @@ module.exports.createProduct = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
 	}
 };
+
+
+module.exports.getProductsByCategoryId = async (req, res) => {
+	try {
+		const { categoryId } = req.params;
+		console.log(req.params);
+
+		// Fetch products from the database based on category ID
+		const products = await Product.find({ category: categoryId }).select("title price description availability");
+
+		// Return the list of products
+		res.status(200).json(products);
+	} catch (error) {
+		// Handle errors
+		res.status(500).json({ message: "Internal Server Error", error: error.message });
+	}
+};

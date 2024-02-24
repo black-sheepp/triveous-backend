@@ -14,5 +14,7 @@ router.get("/get-categories", protectUser,productController.getCategories);
 // product category and product management
 router.post("/create-category", protectUser,productController.createCategory);
 router.post("/create-product", protectUser, productController.createProduct);
+router.get("/get-productListBycategory/:categoryId", protectUser, productController.getProductsByCategoryId);
+
 
 module.exports = router;
