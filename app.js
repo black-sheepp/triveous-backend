@@ -4,10 +4,13 @@ const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 const db = require("./config/mongoose");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/", require("./routes/index"));
 
