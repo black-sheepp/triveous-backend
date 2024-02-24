@@ -21,5 +21,7 @@ router.get("/get-product/:productId", protectUser, productController.getProductB
 // Routes for cart management
 router.post('/add-to-cart', protectUser, cartController.addToCart);
 router.get('/view-cart', protectUser, cartController.viewCart);
+router.put('/update-cart-items/:itemId', protectUser, cartController.updateCartItem);
+
 
 module.exports = router;

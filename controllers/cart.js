@@ -64,3 +64,26 @@ module.exports.viewCart = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
 	}
 };
+
+// Controller function to update the quantity of a product in the user's cart
+module.exports.updateCartItem = async (req, res) => {
+	try {
+        const { itemId } = req.params;
+        const { quantity } = req.body;
+
+        // Find the cart item by ID and update its quantity
+        const updatedCart = await Cart.findOneAndUpdate(
+            { "items._id": itemId }, // Find cart item by its ID
+            { $set: { "items.$.quantity": quantity } }, // Update the quantity of the specific item
+            { new: true } // Return the modified document
+        );
+
+        if (!updatedCart) {
+            return res.status(404).json({ message: "Cart item not found" });
+        }
+
+        res.status(200).json({ message: "Cart item updated successfully", cart: updatedCart });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+};
