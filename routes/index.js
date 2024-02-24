@@ -2,6 +2,7 @@ const router = require("express").Router();
 const userController = require("../controllers/users");
 const productController = require("../controllers/product");
 const protectUser = require("../config/authMiddleware");
+const cartController = require("../controllers/cart");
 
 
 
@@ -16,6 +17,9 @@ router.post("/create-category", protectUser,productController.createCategory);
 router.post("/create-product", protectUser, productController.createProduct);
 router.get("/get-productListBycategory/:categoryId", protectUser, productController.getProductsByCategoryId);
 router.get("/get-product/:productId", protectUser, productController.getProductById);
+
+// Routes for cart management
+router.post('/add-to-cart', protectUser, cartController.addToCart);
 
 
 module.exports = router;
