@@ -22,6 +22,7 @@ router.get("/get-product/:productId", protectUser, productController.getProductB
 router.post('/add-to-cart', protectUser, cartController.addToCart);
 router.get('/view-cart', protectUser, cartController.viewCart);
 router.put('/update-cart-items/:itemId', protectUser, cartController.updateCartItem);
+router.delete('/remove-cart-items/:itemId', protectUser, cartController.removeCartItem);
 
 
 module.exports = router;
