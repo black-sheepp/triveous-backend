@@ -40,3 +40,18 @@ module.exports.placeOrder = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+// Controller function to get the user's order history
+module.exports.getOrderHistory = async (req, res) => {
+    try {
+        const { user } = req;
+
+        // Find orders associated with the user
+        const orders = await Order.find({ user: user._id }).populate("items.product");
+
+        res.status(200).json({ message: "Order history retrieved successfully", orders });
+    } catch (error) {
+        console.error("Error fetching order history:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
