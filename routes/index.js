@@ -27,6 +27,8 @@ router.delete('/remove-cart-items/:itemId', protectUser, cartController.removeCa
 // Routes for order management
 router.get('/place-order', protectUser, orderController.placeOrder);
 router.get('/order-history', protectUser, orderController.getOrderHistory);
+router.get('/order-details/:orderId', protectUser, orderController.getOrderDetails);
+
 
 
 module.exports = router;
