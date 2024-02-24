@@ -1,78 +1,92 @@
-### Ecommerce API with Node js
+### Ecommerce API with Node.js
+
+---
 
 #### Description:
 
 This project implements a RESTful API for an online shopping platform. It allows users to register, login, view products, add products to cart, place orders, and manage their orders.
 
+---
+
 #### Installation:
 
-1. Clone the repository:
-     ```
+1. **Clone the repository:**
+     ```bash
      git clone https://github.com/black-sheepp/triveous-backend.git
      ```
-2. Navigate to the project directory:
-     ```
+
+2. **Navigate to the project directory:**
+     ```bash
      cd triveous-backend
      ```
-3. Install dependencies:
-     ```
+
+3. **Install dependencies:**
+     ```bash
      npm install
      ```
-4. Set up environment variables:
+
+4. **Set up environment variables:**
      - Create a `.env` file in the root directory.
      - Define the following environment variables:
-          ```
+          ```plaintext
           PORT=8000
           MONGODB_URL=<your_mongodb_connection_string>
           JWT_SECRET=<your_jwt_secret_key>
           ```
-5. Start the server:
-     ```
+
+5. **Start the server:**
+     ```bash
      npm start
      ```
 
+---
+
 #### API Endpoints:
 
--    User Authentication:
+- **User Authentication:**
 
-     -    `POST /register`: Create a new user account.
-     -    `POST /login`: Authenticate user and generate authentication token.
-     -    `GET /logout`: Logout the user.
+     - `POST /register`: Create a new user account.
+     - `POST /login`: Authenticate user and generate authentication token.
+     - `GET /logout`: Logout the user.
 
--    Product Management:
+- **Product Management:**
 
-     -    `POST /create-category`: Create a new product category.
-     -    `POST /create-product`: Create a new product.
-     -    `GET /get-productListBycategory/:categoryId`: Get a list of products by category ID.
-     -    `GET /get-product/:productId`: Get details of a specific product by its ID.
+     - `POST /create-category`: Create a new product category.
+     - `POST /create-product`: Create a new product.
+     - `GET /get-productListBycategory/:categoryId`: Get a list of products by category ID.
+     - `GET /get-product/:productId`: Get details of a specific product by its ID.
 
--    Cart Management:
+- **Cart Management:**
 
-     -    `POST /add-to-cart`: Add a product to the user's cart.
-     -    `GET /view-cart`: View the user's cart.
-     -    `PUT /update-cart-items/:itemId`: Update the quantity of a product in the user's cart.
-     -    `DELETE /remove-cart-items/:itemId`: Remove a product from the user's cart.
+     - `POST /add-to-cart`: Add a product to the user's cart.
+     - `GET /view-cart`: View the user's cart.
+     - `PUT /update-cart-items/:itemId`: Update the quantity of a product in the user's cart.
+     - `DELETE /remove-cart-items/:itemId`: Remove a product from the user's cart.
 
--    Order Management:
-     -    `GET /place-order`: Place an order using the products in the user's cart.
-     -    `GET /order-history`: Get the order history for the authenticated user.
-     -    `GET /order-details/:orderId`: Get detailed information of a specific order by its ID.
+- **Order Management:**
+     - `GET /place-order`: Place an order using the products in the user's cart.
+     - `GET /order-history`: Get the order history for the authenticated user.
+     - `GET /order-details/:orderId`: Get detailed information of a specific order by its ID.
+
+---
 
 #### Testing:
 
 To test the API endpoints, you can use tools like Postman or write unit tests using libraries like Mocha and Chai.
 
+---
+
 ### API Endpoint Test Cases
 
 #### 1. User Authentication:
 
--    **Register User**
+- **Register User**
 
-     -    Method: POST
-     -    Endpoint: /register
-     -    Test Case:
-          -    Input:
-               ```
+     - Method: POST
+     - Endpoint: /register
+     - Test Case:
+          - Input:
+               ```json
                {
                  "username": "Shivam Gupta",
                  "email": "shivam@github.com",
@@ -81,10 +95,10 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                  "address": "New Delhi, India"
                }
                ```
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "username": "Shivam Gupta",
                       "email": "shivam@github.com",
@@ -95,22 +109,22 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Login User**
+- **Login User**
 
-     -    Method: POST
-     -    Endpoint: /login
-     -    Test Case:
-          -    Input:
-               ```
+     - Method: POST
+     - Endpoint: /login
+     - Test Case:
+          - Input:
+               ```json
                {
                  "email": "shivam@github.com",
                  "password": "test123"
                }
                ```
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "username": "Shivam Gupta",
                       "email": "shivam@github.com",
@@ -120,14 +134,14 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Logout User**
-     -    Method: GET
-     -    Endpoint: /logout
-     -    Test Case:
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+- **Logout User**
+     - Method: GET
+     - Endpoint: /logout
+     - Test Case:
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "User logged out successfully"
                     }
@@ -135,21 +149,21 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
 
 #### 2. Product Management:
 
--    **Create Product Category**
+- **Create Product Category**
 
-     -    Method: POST
-     -    Endpoint: /create-category
-     -    Test Case:
-          -    Input:
-               ```
+     - Method: POST
+     - Endpoint: /create-category
+     - Test Case:
+          - Input:
+               ```json
                {
                  "name": "Electronics"
                }
                ```
-          -    Expected Output:
-               -    Status Code: 201
-               -    Response Body:
-                    ```
+          - Expected Output:
+               - Status Code: 201
+               - Response Body:
+                    ```json
                     {
                       "message": "Category created successfully",
                       "category": {
@@ -162,13 +176,13 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Create Product**
+- **Create Product**
 
-     -    Method: POST
-     -    Endpoint: /create-product
-     -    Test Case:
-          -    Input:
-               ```
+     - Method: POST
+     - Endpoint: /create-product
+     - Test Case:
+          - Input:
+               ```json
                {
                  "title": "Laptop",
                  "price": 1000,
@@ -176,10 +190,10 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                  "category": "<category_id>"
                }
                ```
-          -    Expected Output:
-               -    Status Code: 201
-               -    Response Body:
-                    ```
+          - Expected Output:
+               - Status Code: 201
+               - Response Body:
+                    ```json
                     {
                       "message": "Product created successfully",
                       "product": {
@@ -196,16 +210,16 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Get Products By Category ID**
+- **Get Products By Category ID**
 
-     -    Method: GET
-     -    Endpoint: /get-productListBycategory/:categoryId
-     -    Test Case:
-          -    Input: categoryId
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+     - Method: GET
+     - Endpoint: /get-productListBycategory/:categoryId
+     - Test Case:
+          - Input: categoryId
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     [
                       {
                         "_id": "<product_id>",
@@ -217,15 +231,15 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     ]
                     ```
 
--    **Get Product By ID**
-     -    Method: GET
-     -    Endpoint: /get-product/:productId
-     -    Test Case:
-          -    Input: productId
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+- **Get Product By ID**
+     - Method: GET
+     - Endpoint: /get-product/:productId
+     - Test Case:
+          - Input: productId
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "_id": "<product_id>",
                       "title": "Laptop",
@@ -237,77 +251,76 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
 
 #### 3. Cart Management:
 
--    **Add Product to Cart**
+- **Add Product to Cart**
 
-     -    Method: POST
-     -    Endpoint: /add-to-cart
-     -    Test Case:
-          -    Input:
-               ```
+     - Method: POST
+     - Endpoint: /add-to-cart
+     - Test Case:
+          - Input:
+               ```json
                {
                  "productId": "<product_id>",
                  "quantity": 1
                }
                ```
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Product added to cart successfully"
                     }
                     ```
 
--    **View Cart**
-     -    Method: GET
-     -    Endpoint: /view-cart
-     -    Test Case:
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+- **View Cart**
+     - Method: GET
+
+
+     - Endpoint: /view-cart
+     - Test Case:
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Cart retrieved successfully",
-                      "cart
+                      "cart": [
+                        {
+                          "product": {
+                            "title": "Laptop",
+                            "price": 1000,
+                            "description": "High-performance laptop"
+                          },
+                          "quantity": 1
+                        }
+                      ]
+                    }
                     ```
 
-": [
-{
-"product": {
-"title": "Laptop",
-"price": 1000,
-"description": "High-performance laptop"
-},
-"quantity": 1
-}
-]
-}
-```
+- **Update Cart Item**
 
--    **Update Cart Item**
-
-     -    Method: PUT
-     -    Endpoint: /update-cart-items/:itemId
-     -    Test Case:
-          -    Input: itemId, updated quantity
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+     - Method: PUT
+     - Endpoint: /update-cart-items/:itemId
+     - Test Case:
+          - Input: itemId, updated quantity
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Cart item updated successfully"
                     }
                     ```
 
--    **Remove Cart Item**
-     -    Method: DELETE
-     -    Endpoint: /remove-cart-items/:itemId
-     -    Test Case:
-          -    Input: itemId
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+- **Remove Cart Item**
+     - Method: DELETE
+     - Endpoint: /remove-cart-items/:itemId
+     - Test Case:
+          - Input: itemId
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Cart item removed successfully"
                     }
@@ -315,15 +328,15 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
 
 #### 4. Order Management:
 
--    **Place Order**
+- **Place Order**
 
-     -    Method: GET
-     -    Endpoint: /place-order
-     -    Test Case:
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+     - Method: GET
+     - Endpoint: /place-order
+     - Test Case:
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Order placed successfully",
                       "order": {
@@ -342,15 +355,15 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Get Order History**
+- **Get Order History**
 
-     -    Method: GET
-     -    Endpoint: /order-history
-     -    Test Case:
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+     - Method: GET
+     - Endpoint: /order-history
+     - Test Case:
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Order history retrieved successfully",
                       "orders": [
@@ -371,15 +384,15 @@ To test the API endpoints, you can use tools like Postman or write unit tests us
                     }
                     ```
 
--    **Get Order Details**
-     -    Method: GET
-     -    Endpoint: /order-details/:orderId
-     -    Test Case:
-          -    Input: orderId
-          -    Expected Output:
-               -    Status Code: 200
-               -    Response Body:
-                    ```
+- **Get Order Details**
+     - Method: GET
+     - Endpoint: /order-details/:orderId
+     - Test Case:
+          - Input: orderId
+          - Expected Output:
+               - Status Code: 200
+               - Response Body:
+                    ```json
                     {
                       "message": "Order details retrieved successfully",
                       "order": {
