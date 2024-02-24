@@ -3,7 +3,7 @@ const userController = require("../controllers/users");
 const productController = require("../controllers/product");
 const protectUser = require("../config/authMiddleware");
 const cartController = require("../controllers/cart");
-
+const orderController = require("../controllers/order")
 
 
 // user authorization and authentication
@@ -23,6 +23,9 @@ router.post('/add-to-cart', protectUser, cartController.addToCart);
 router.get('/view-cart', protectUser, cartController.viewCart);
 router.put('/update-cart-items/:itemId', protectUser, cartController.updateCartItem);
 router.delete('/remove-cart-items/:itemId', protectUser, cartController.removeCartItem);
+
+// Routes for order management
+router.get('/place-order', protectUser, orderController.placeOrder);
 
 
 module.exports = router;
