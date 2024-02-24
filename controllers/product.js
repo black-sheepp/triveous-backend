@@ -1,5 +1,5 @@
 const Category = require("../models/productCategory");
-
+const Product = require("../models/products");
 // Controller function to create a new product category
 module.exports.createCategory = async (req, res) => {
 	try {
@@ -34,6 +34,39 @@ module.exports.getCategories = async (req, res) => {
 		res.status(200).json(categories);
 	} catch (error) {
 		// Handle errors
+		res.status(500).json({ message: "Internal Server Error", error: error.message });
+	}
+};
+
+module.exports.createProduct = async (req, res) => {
+	try {
+		// Check if the user is authorized (admin or seller)
+		if (!req.user || (req.user.role !== "admin" && req.user.role !== "seller")) {
+			return res.status(403).json({ message: "You are not authorized to perform this action" });
+		}
+
+		// Check if the category exists
+		const category = await Category.findOne({ name: req.body.category });
+		if (!category) {
+			return res.status(404).json({ message: "Category not found" });
+		}
+
+		// Create the product
+		const product = new Product({
+			title: req.body.title,
+			price: req.body.price,
+			description: req.body.description || "",
+			availability: req.body.availability || true,
+			category: category._id, // Use the ObjectId of the found category
+		});
+
+		// Save the product to the database
+		await product.save();
+
+		// Return success message
+		res.status(201).json({ message: "Product created successfully", product });
+	} catch (error) {
+		// If an error occurs, return 500 Internal Server Error status
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
 	}
 };

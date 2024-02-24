@@ -13,6 +13,6 @@ router.get("/get-categories", protectUser,productController.getCategories);
 
 // product category and product management
 router.post("/create-category", protectUser,productController.createCategory);
-
+router.post("/create-product", protectUser, productController.createProduct);
 
 module.exports = router;
