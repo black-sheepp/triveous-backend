@@ -71,7 +71,6 @@ module.exports.createProduct = async (req, res) => {
 	}
 };
 
-
 module.exports.getProductsByCategoryId = async (req, res) => {
 	try {
 		const { categoryId } = req.params;
@@ -82,6 +81,27 @@ module.exports.getProductsByCategoryId = async (req, res) => {
 
 		// Return the list of products
 		res.status(200).json(products);
+	} catch (error) {
+		// Handle errors
+		res.status(500).json({ message: "Internal Server Error", error: error.message });
+	}
+};
+
+// Controller function to get product details by product ID
+module.exports.getProductById = async (req, res) => {
+	try {
+		const { productId } = req.params;
+
+		// Fetch product from the database based on product ID
+		const product = await Product.findById(productId);
+
+		// Check if the product exists
+		if (!product) {
+			return res.status(404).json({ message: "Product not found" });
+		}
+
+		// Return the product details
+		res.status(200).json(product);
 	} catch (error) {
 		// Handle errors
 		res.status(500).json({ message: "Internal Server Error", error: error.message });
